@@ -1,21 +1,19 @@
 {% set name = "interlap" %}
-{% set version = "0.2.6" %}
-{% set hash_type = "sha256" %}
-{% set hash_value = "a8585a165bf7e94d4d262811b4cb00674059414c50afc7561c949b0feb78fa09" %}
+{% set version = "0.2.7" %}
 
 package:
-  name: '{{ name|lower }}'
-  version: '{{ version }}'
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  fn: '{{ name }}-{{ version }}.tar.gz'
-  '{{ hash_type }}': '{{ hash_value }}'
+  fn: {{ name }}-{{ version }}.tar.gz
+  sha256: 31e4f30c54b067c4939049f5d8131ae5e2fa682ec71aa56f89c0e5b900806ec9
 
 build:
   noarch: python
-  script: python -m pip install --no-deps --ignore-installed .
-  number: 1
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  number: 0
 
 requirements:
   host:
